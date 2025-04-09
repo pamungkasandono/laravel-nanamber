@@ -2,7 +2,6 @@
 
 namespace PamungkasAndono\Nanamber\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use PamungkasAndono\Nanamber\NanamberServiceProvider;
 
@@ -20,9 +19,9 @@ class TestCase extends Orchestra
         $app['config']->set('database.default', 'testing');
 
         $app['config']->set('database.connections.testing', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
@@ -30,6 +29,6 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }

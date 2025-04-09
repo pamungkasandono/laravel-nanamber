@@ -1,7 +1,7 @@
 <?php
 
-use PamungkasAndono\Nanamber\Nanamber;
 use Illuminate\Support\Carbon;
+use PamungkasAndono\Nanamber\Nanamber;
 
 test('struktur tabel memiliki kolom inti dan kolom timestamp', function () {
     $columns = Schema::getColumnListing(config('nanamber.table'));
@@ -53,7 +53,7 @@ test('padding custom bekerja dengan benar', function () {
 
 test('template berbasis closure berfungsi', function () {
     $serial = Nanamber::template(function ($date) {
-        return $date->format('ym') . '-{number}';
+        return $date->format('ym').'-{number}';
     })->generate();
 
     expect($serial)->toMatch('/^\d{4}-0001$/');
@@ -62,7 +62,7 @@ test('template berbasis closure berfungsi', function () {
 test('template closure yang return-nya nilai selain string akan menyebabkan exception', function () {
     $this->expectException(InvalidArgumentException::class);
 
-    Nanamber::template(fn() => 1234)->generate();
+    Nanamber::template(fn () => 1234)->generate();
 });
 
 test('set tanggal custom dan hasil generate sesuai dengan input tanggal', function () {

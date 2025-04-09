@@ -17,36 +17,26 @@ class Nanamber
 {
     /**
      * Format template untuk menghasilkan nomor.
-     *
-     * @var string
      */
     protected string $templateFormat;
 
     /**
      * Panjang padding untuk bagian nomor.
-     *
-     * @var int
      */
     protected int $padLength = 4;
 
     /**
      * Karakter yang digunakan untuk padding.
-     *
-     * @var string
      */
     protected string $padString = '0';
 
     /**
      * Jenis padding yang digunakan (STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH).
-     *
-     * @var int
      */
     protected int $padType = STR_PAD_LEFT;
 
     /**
      * Instance Carbon untuk operasi tanggal dalam template.
-     *
-     * @var Carbon
      */
     protected Carbon $date;
 
@@ -59,17 +49,17 @@ class Nanamber
      * @param  string|\Closure  $templateFormat  String template atau closure yang mengembalikan string
      * @return static
      *
-     * @throws \InvalidArgumentException  Jika closure tidak mengembalikan string
+     * @throws \InvalidArgumentException Jika closure tidak mengembalikan string
      */
     public static function template(string|\Closure $templateFormat): self
     {
-        $instance = new static();
+        $instance = new static;
         $instance->date = Carbon::now();
 
         if ($templateFormat instanceof \Closure) {
             $template = $templateFormat($instance->date);
-            if (!is_string($template)) {
-                throw new \InvalidArgumentException("Callback passed to template() must return a string.");
+            if (! is_string($template)) {
+                throw new \InvalidArgumentException('Callback passed to template() must return a string.');
             }
             $instance->templateFormat = $template;
         } else {
@@ -92,12 +82,13 @@ class Nanamber
         $this->padLength = $length;
         $this->padString = $padString;
         $this->padType = $padType;
+
         return $this;
     }
 
     /**
      * Mengatur tanggal yang digunakan untuk placeholder tanggal dalam template.
-     * 
+     *
      * Method ini cocok untuk mengatur backdated data atau generate sesuai periode tertentu.
      *
      * @param  Carbon  $date  Instance Carbon untuk tanggal yang diinginkan
@@ -106,6 +97,7 @@ class Nanamber
     public function setDate(Carbon $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -116,7 +108,7 @@ class Nanamber
      * memastikan keunikan dan integritas nilai.
      *
      * @param  int  $plus  Jumlah yang akan ditambahkan ke nilai terakhir
-     * @return int  Nilai setelah diincrement
+     * @return int Nilai setelah diincrement
      */
     protected function incrementValue(int $plus = 1): int
     {
@@ -134,7 +126,7 @@ class Nanamber
 
             $now = Carbon::now();
 
-            if (!$record) {
+            if (! $record) {
                 DB::table($table)->insert([
                     $templateField => $this->templateFormat,
                     $valueField => 0,
@@ -168,7 +160,7 @@ class Nanamber
      * dan placeholder format tanggal dengan nilai tanggal yang diformatkan.
      *
      * @param  string  $number  Nomor yang akan diterapkan ke template
-     * @return string  Nomor yang diformat sesuai template
+     * @return string Nomor yang diformat sesuai template
      */
     protected function applyTemplate(string $number): string
     {
@@ -181,7 +173,7 @@ class Nanamber
         foreach ($matches[1] as $format) {
             try {
                 $formatted = $this->date->format($format);
-                $template = str_replace('{' . $format . '}', $formatted, $template);
+                $template = str_replace('{'.$format.'}', $formatted, $template);
             } catch (\Exception $e) {
                 continue;
             }
@@ -193,12 +185,13 @@ class Nanamber
     /**
      * Menghasilkan nomor sekuensial berikutnya berdasarkan template yang dikonfigurasi.
      *
-     * @return string  Nomor sekuensial yang diformat
+     * @return string Nomor sekuensial yang diformat
      */
     public function generate(): string
     {
         $nextValue = $this->incrementValue();
         $number = str_pad($nextValue, $this->padLength, $this->padString, $this->padType);
+
         return $this->applyTemplate($number);
     }
 
@@ -206,7 +199,7 @@ class Nanamber
      * Menghasilkan batch nomor sekuensial berdasarkan template yang dikonfigurasi.
      *
      * @param  int  $howMuch  Jumlah nomor yang akan dihasilkan
-     * @return \Illuminate\Support\Collection  Koleksi nomor sekuensial yang diformat
+     * @return \Illuminate\Support\Collection Koleksi nomor sekuensial yang diformat
      */
     public function generateBatch(int $howMuch): Collection
     {
@@ -227,7 +220,7 @@ class Nanamber
      * Mengatur ulang nilai terakhir untuk template yang ditentukan.
      *
      * @param  int  $newValue  Nilai baru untuk template ini
-     * @return int  Nilai yang diatur
+     * @return int Nilai yang diatur
      */
     public function resetValue(int $newValue = 0): int
     {
@@ -245,7 +238,7 @@ class Nanamber
 
             $now = Carbon::now();
 
-            if (!$record) {
+            if (! $record) {
                 DB::table($table)->insert([
                     $templateField => $this->templateFormat,
                     $valueField => $newValue,
