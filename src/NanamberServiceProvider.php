@@ -2,9 +2,9 @@
 
 namespace PamungkasAndono\Nanamber;
 
+use PamungkasAndono\Nanamber\Commands\NanamberCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use PamungkasAndono\Nanamber\Commands\NanamberCommand;
 
 class NanamberServiceProvider extends PackageServiceProvider
 {
