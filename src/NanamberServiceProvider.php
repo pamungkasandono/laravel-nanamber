@@ -18,7 +18,6 @@ class NanamberServiceProvider extends PackageServiceProvider
         $package
             ->name('nanamber')
             ->hasConfigFile()
-            ->hasViews()
             ->hasMigration('create_nanamber_table')
             ->hasCommand(NanamberCommand::class);
     }

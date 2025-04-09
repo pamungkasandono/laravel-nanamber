@@ -8,15 +8,6 @@ use PamungkasAndono\Nanamber\NanamberServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'PamungkasAndono\\Nanamber\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
@@ -24,14 +15,21 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app)
     {
-        config()->set('database.default', 'testing');
+        $app['config']->set('database.default', 'testing');
 
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
+        $app['config']->set('database.connections.testing', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
