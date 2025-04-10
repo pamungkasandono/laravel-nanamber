@@ -20,7 +20,7 @@ Nanamber adalah library Laravel yang menyediakan cara mudah untuk menghasilkan n
 
 ### Persyaratan
 
--   PHP 8.0+
+-   PHP 8.2+
 -   Laravel 8.0+
 
 ### Cara Instalasi
