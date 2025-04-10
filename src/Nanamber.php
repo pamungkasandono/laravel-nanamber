@@ -173,7 +173,7 @@ class Nanamber
         foreach ($matches[1] as $format) {
             try {
                 $formatted = $this->date->format($format);
-                $template = str_replace('{' . $format . '}', $formatted, $template);
+                $template = str_replace('{'.$format.'}', $formatted, $template);
             } catch (\Exception $e) {
                 continue;
             }
