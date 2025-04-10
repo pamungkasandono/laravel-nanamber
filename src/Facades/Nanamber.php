@@ -1,16 +1,16 @@
 <?php
 
-namespace PamungkasAndono\Nanamber\Facades;
+namespace PamungkasAndono\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \PamungkasAndono\Nanamber\Nanamber
+ * @see \PamungkasAndono\Nanamber
  */
 class Nanamber extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \PamungkasAndono\Nanamber\Nanamber::class;
+        return \PamungkasAndono\Laravel\Nanamber::class;
     }
 }

@@ -1,12 +1,12 @@
 {
-    "name": "pamungkasandono/nanamber",
+    "name": "pamungkasandono/laravel-nanamber",
     "description": "Nanamber adalah library Laravel untuk membuat penomoran otomatis (auto number) dengan format yang fleksibel dan dapat dikustomisasi. Umum digunakan untuk penomoran dokumen, invoice, registrasi, dan sebagainya.",
     "keywords": [
         "pamungkas andono",
         "laravel",
         "nanamber"
     ],
-    "homepage": "https://github.com/pamungkasandono/nanamber",
+    "homepage": "https://github.com/pamungkasandono/laravel-nanamber",
     "license": "MIT",
     "authors": [
         {
@@ -35,13 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PamungkasAndono\\Nanamber\\": "src/",
-            "PamungkasAndono\\Nanamber\\Database\\Factories\\": "database/factories/"
+            "PamungkasAndono\\Laravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PamungkasAndono\\Nanamber\\Tests\\": "tests/",
+            "PamungkasAndono\\Laravel\\Nanamber\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PamungkasAndono\\Nanamber\\NanamberServiceProvider"
+                "PamungkasAndono\\Laravel\\NanamberServiceProvider"
             ],
             "aliases": {
-                "Nanamber": "PamungkasAndono\\Nanamber\\Facades\\Nanamber"
+                "Nanamber": "PamungkasAndono\\Laravel\\Facades\\Nanamber"
             }
         }
     },

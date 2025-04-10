@@ -1,8 +1,7 @@
 <?php
 
-namespace PamungkasAndono\Nanamber;
+namespace PamungkasAndono\Laravel;
 
-use PamungkasAndono\Nanamber\Commands\NanamberCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,8 +16,7 @@ class NanamberServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('nanamber')
-            ->hasConfigFile()
-            ->hasMigration('create_nanamber_table')
-            ->hasCommand(NanamberCommand::class);
+            ->hasConfigFile(['nanamber'])
+            ->hasMigration('2025_10_04_000000_create_auto_numbers_table');
     }
 }

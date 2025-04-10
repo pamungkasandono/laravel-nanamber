@@ -1,9 +1,9 @@
 <?php
 
-namespace PamungkasAndono\Nanamber\Tests;
+namespace PamungkasAndono\Laravel\Nanamber\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use PamungkasAndono\Nanamber\NanamberServiceProvider;
+use PamungkasAndono\Laravel\NanamberServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -29,6 +29,6 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
