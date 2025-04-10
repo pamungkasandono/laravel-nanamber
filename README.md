@@ -1,9 +1,9 @@
 # Nanamber Documentation
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pamungkasandono/nanamber.svg?style=flat-square)](https://packagist.org/packages/pamungkasandono/nanamber)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/pamungkasandono/nanamber/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/pamungkasandono/nanamber/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/pamungkasandono/nanamber/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/pamungkasandono/nanamber/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/pamungkasandono/nanamber.svg?style=flat-square)](https://packagist.org/packages/pamungkasandono/nanamber)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pamungkasandono/laravel-nanamber.svg?style=flat-square)](https://packagist.org/packages/pamungkasandono/laravel-nanamber)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/pamungkasandono/laravel-nanamber/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/pamungkasandono/laravel-nanamber/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/pamungkasandono/laravel-nanamber/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/pamungkasandono/laravel-nanamber/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/pamungkasandono/laravel-nanamber.svg?style=flat-square)](https://packagist.org/packages/pamungkasandono/laravel-nanamber)
 
 Nanamber adalah library Laravel yang menyediakan cara mudah untuk menghasilkan nomor sekuensial dengan format yang dapat dikonfigurasi. Library ini menawarkan solusi untuk kasus-kasus seperti pembuatan nomor invoice, nomor referensi transaksi, kode tracking, dan lainnya yang membutuhkan nomor berurutan dengan format yang spesifik.
 
@@ -28,7 +28,7 @@ Nanamber adalah library Laravel yang menyediakan cara mudah untuk menghasilkan n
 Anda dapat menginstal library ini via Composer:
 
 ```bash
-composer require pamungkasandono/nanamber
+composer require pamungkasandono/laravel-nanamber
 ```
 
 ### Publikasi Config
@@ -36,7 +36,7 @@ composer require pamungkasandono/nanamber
 Publikasikan file konfigurasi dengan menjalankan:
 
 ```bash
-php artisan vendor:publish --provider="PamungkasAndono\Nanamber\NanamberServiceProvider" --tag="config"
+php artisan vendor:publish --provider="PamungkasAndono\Laravel\Nanamber\NanamberServiceProvider" --tag="config"
 ```
 
 ### Migrasi Database
@@ -65,7 +65,7 @@ Schema::create('auto_numbers', function (Blueprint $table) {
 Contoh paling dasar menggunakan Nanamber:
 
 ```php
-use PamungkasAndono\Nanamber\Nanamber;
+use PamungkasAndono\Laravel\Nanamber;
 
 // Menghasilkan nomor dengan format: 2025040001
 $number = Nanamber::template('{Y}{m}{number}')->generate();
@@ -127,7 +127,7 @@ $invoice = Nanamber::template(function ($date) use ($buyer_id) {
 Secara default, Nanamber menggunakan tanggal saat ini. Anda dapat mengatur tanggal khusus:
 
 ```php
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 // Menggunakan tanggal spesifik untuk menghasilkan nomor
 $date = Carbon::create(2023, 12, 25);
@@ -295,7 +295,7 @@ return [
 
 ## Kontribusi
 
-Kontribusi sangat diterima. Silakan membuat issue atau pull request di [GitHub repository](https://github.com/pamungkasandono/nanamber).
+Kontribusi sangat diterima. Silakan membuat issue atau pull request di [GitHub repository](https://github.com/pamungkasandono/laravel-nanamber).
 
 ## Lisensi
 
